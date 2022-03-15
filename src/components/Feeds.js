@@ -12,7 +12,6 @@ function Feeds() {
     const [feeds, setfeeds] = useState([]);
     const [searchKey, setsearchKey] = useState('');
 
-
     useEffect(() => {
 
         var xml = fetchFeeds();
@@ -20,9 +19,10 @@ function Feeds() {
         parseString(xml, function (err, results) {
             // parsing to json
              json = JSON.stringify(results);
+             setfeeds(json.rss.channel.item);
+      
         });
 
-        setfeeds(json.rss.channel.item);
 
     }, [])
 
